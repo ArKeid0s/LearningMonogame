@@ -33,21 +33,18 @@ namespace MyPattern.Scenes
 	{
 		public Meteor(Texture2D texture) : base(texture)
 		{
-			int speed = 1;
-			float vX = Velocity.X;
-			float vY = Velocity.Y;
+			float speed = 0.1f;
 			do
 			{
-				vX = Util.RandomInt(-3, 3);
-			} while (vX == 0f);
+				Velocity = new Vector2(Util.RandomInt(-3, 3), Util.RandomInt(-3, 3));
+			} while (Velocity.X == 0f);
 
 			do
 			{
-				vY = Util.RandomInt(-3, 3);
-			} while (vY == 0f);
+				Velocity = new Vector2(Util.RandomInt(-3, 3), Util.RandomInt(-3, 3));
+			} while (Velocity.Y == 0f);
 
-			Velocity = new Vector2(vX, vY);
-
+			Velocity *= speed;
 		}
 
 		public override void OnCollide(IActor other)
@@ -73,7 +70,7 @@ namespace MyPattern.Scenes
 
 			Rectangle screen = game.Window.ClientBounds;
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < 50; i++)
 			{
 				Meteor m = new(game.Content.Load<Texture2D>("circle"));
 				m.Position = new Vector2(Util.RandomInt(0, screen.Width - m.Bounds.Width), Util.RandomInt(0, screen.Height - m.Bounds.Height));
