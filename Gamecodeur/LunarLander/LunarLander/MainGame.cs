@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 
 namespace LunarLander
@@ -14,6 +16,9 @@ namespace LunarLander
 		private KeyboardState _newKeyboardState;
 
 		private Lander _player;
+
+		private SoundEffect _sfx;
+		private SoundEffectInstance _sfxInst;
 
 		public MainGame()
 		{
@@ -37,6 +42,14 @@ namespace LunarLander
 			_spriteBatch = new SpriteBatch(GraphicsDevice);
 			_player.img = Content.Load<Texture2D>("ship");
 			_player.imgEngine = Content.Load<Texture2D>("engine");
+			Song music = Content.Load<Song>("cool");
+			MediaPlayer.IsRepeating = true;
+			MediaPlayer.Play(music);
+			MediaPlayer.Volume = 0.2f;
+
+			_sfx = Content.Load<SoundEffect>("sfx_movement_jump13");
+			_sfxInst = _sfx.CreateInstance();
+			_sfxInst.Volume = 0.1f;
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -65,6 +78,9 @@ namespace LunarLander
 				float yForce = (float)Math.Sin(angle);
 
 				_player.velocity += new Vector2(xForce, yForce) * _player.speed;
+
+				if (_sfxInst.State != SoundState.Playing)
+					_sfxInst.Play();
             }
             else
             {
