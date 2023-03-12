@@ -29,10 +29,10 @@ namespace TopDownShooter.Source.Engine
 
 		}
 
-		public virtual void Draw(Vector2 offset, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
+		public virtual void Draw(Vector2 offset, SpriteEffects spriteEffect = SpriteEffects.None)
 		{
 			Vector2 origin = new(Sprite.Bounds.Width / 2, Sprite.Bounds.Height / 2);
-			Draw(offset, origin, color, spriteEffect);
+			Draw(offset, origin, Color.White, spriteEffect);
 		}
 
 		public virtual void Draw(Vector2 offset, Vector2 origin, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
@@ -45,7 +45,7 @@ namespace TopDownShooter.Source.Engine
 					sourceRectangle: null,
 					color: color,
 					rotation: _rotation,
-					origin: origin,
+					origin: new Vector2(origin.X, origin.Y),
 					effects: spriteEffect,
 					layerDepth: 0);
 			}

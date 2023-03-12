@@ -63,9 +63,9 @@ namespace TopDownShooter.Source.Gameplay
 			return false;
 		}
 
-		public override void Draw(Vector2 offset, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
+		public override void Draw(Vector2 offset, SpriteEffects spriteEffect = SpriteEffects.None)
 		{
-			base.Draw(offset, Color.White, spriteEffect);
+			base.Draw(offset, spriteEffect);
 		}
 	}
 }

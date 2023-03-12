@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 using TopDownShooter.Source.Engine;
 using TopDownShooter.Source.Gameplay.Projectiles;
 
@@ -66,12 +67,12 @@ namespace TopDownShooter.Source.Gameplay.Units
 			base.Update(offset);
 		}
 
-		public override void Draw(Vector2 offset, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
+		public override void Draw(Vector2 offset, SpriteEffects spriteEffect = SpriteEffects.None)
 		{
 			if (Globals.MouseManager.newMousePos.X < Position.X) spriteEffect = SpriteEffects.FlipHorizontally;
 			else spriteEffect = SpriteEffects.None;
 
-			base.Draw(offset, Color.White, spriteEffect);
+			base.Draw(offset, spriteEffect);
 		}
 	}
 }

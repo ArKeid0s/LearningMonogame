@@ -25,10 +25,8 @@ namespace TopDownShooter.Source.Gameplay
 			_hitDistance = 35f;
 		}
 
-		public override void Update(Vector2 offset)
+		public virtual void Update(Vector2 offset, Player enemy)
 		{
-
-
 			base.Update(offset);
 		}
 
@@ -41,9 +39,9 @@ namespace TopDownShooter.Source.Gameplay
 			}
 		}
 
-		public override void Draw(Vector2 offset, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
+		public override void Draw(Vector2 offset, SpriteEffects spriteEffect = SpriteEffects.None)
 		{
-			base.Draw(offset, Color.White, spriteEffect);
+			base.Draw(offset, spriteEffect);
 		}
 	}
 }

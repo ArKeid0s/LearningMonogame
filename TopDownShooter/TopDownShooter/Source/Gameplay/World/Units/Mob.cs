@@ -11,9 +11,9 @@ namespace TopDownShooter.Source.Gameplay.Units
 			Speed = 2f;
 		}
 
-		public virtual void Update(Vector2 offset, Hero hero)
+		public override void Update(Vector2 offset, Player enemy)
 		{
-			AiLogic(hero);
+			AiLogic(enemy.hero);
 			base.Update(offset);
 		}
 
@@ -29,9 +29,9 @@ namespace TopDownShooter.Source.Gameplay.Units
             }
         }
 
-		public override void Draw(Vector2 offset, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
+		public override void Draw(Vector2 offset, SpriteEffects spriteEffect = SpriteEffects.None)
 		{
-			base.Draw(offset, Color.White, spriteEffect);
+			base.Draw(offset, spriteEffect);
 		}
 	}
 }

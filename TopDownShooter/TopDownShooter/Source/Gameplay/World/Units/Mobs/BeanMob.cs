@@ -10,14 +10,14 @@ namespace TopDownShooter.Source.Gameplay.Units.Mobs
 			Speed = 2f;
 		}
 
-		public override void Update(Vector2 offset, Hero hero)
+		public override void Update(Vector2 offset, Player enemy)
 		{
-			base.Update(offset, hero);
+			base.Update(offset, enemy);
 		}
 
-		public override void Draw(Vector2 offset, Color color, SpriteEffects spriteEffect = SpriteEffects.None)
+		public override void Draw(Vector2 offset, SpriteEffects spriteEffect = SpriteEffects.None)
 		{
-			base.Draw(offset, Color.White, spriteEffect);
+			base.Draw(offset, spriteEffect);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TopDownShooter.Source;
 using TopDownShooter.Source.Engine;
 using TopDownShooter.Source.Engine.Input;
 using TopDownShooter.Source.Gameplay;
@@ -11,7 +12,7 @@ namespace TopDownShooter
 	{
 		private GraphicsDeviceManager _graphics;
 
-		private World _world;
+		private GamePlay _gameplay;
 
 		private Basic2d _cursor;
 
@@ -44,7 +45,7 @@ namespace TopDownShooter
 			Globals.KeyboardManager = new KeyboardManager();
 			Globals.MouseManager = new MouseManager();
 
-			_world = new World();
+			_gameplay = new GamePlay();
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -57,7 +58,7 @@ namespace TopDownShooter
 			Globals.MouseManager.Update();
 
 
-			_world.Update();
+			_gameplay.Update();
 
 
 			Globals.KeyboardManager.UpdateOld();
@@ -72,7 +73,8 @@ namespace TopDownShooter
 
 			Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-			_world.Draw(Vector2.Zero);
+			_gameplay.Draw();
+
 			_cursor.Draw(
 				offset: Globals.MouseManager.newMousePos,
 				origin: Vector2.Zero,

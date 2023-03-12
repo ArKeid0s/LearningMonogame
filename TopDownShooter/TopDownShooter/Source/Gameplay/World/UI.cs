@@ -20,16 +20,22 @@ namespace TopDownShooter.Source.Gameplay
 
 		public void Update(World world)
 		{
-			_healthBar.Update(world.Hero.Health, world.Hero.HealthMax);
+			_healthBar.Update(world.user.hero.Health, world.user.hero.HealthMax);
 		}
 
 		public void Draw(World world)
 		{
-			string tempStr = $"Num killed = {world._numKilled}";
+			string tempStr = $"Score: {GameGlobals.score}";
 			Vector2 strDimensions = Font.MeasureString(tempStr);
 			Globals.SpriteBatch.DrawString(Font, tempStr, new Vector2(Globals.ScreenWidth / 2 - strDimensions.X / 2, Globals.ScreenHeight - 30), Color.Black);
 
 			_healthBar.Draw(new Vector2(20, Globals.ScreenHeight - 30));
-		}
+
+            if (world.user.hero.IsDead)
+			{
+				tempStr = $"Press enter to restart !";
+				Globals.SpriteBatch.DrawString(Font, tempStr, new Vector2(Globals.ScreenWidth / 2, Globals.ScreenHeight/2), Color.Black);
+			}
+        }
 	}
 }
