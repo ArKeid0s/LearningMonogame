@@ -1,32 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using TopDownShooter.Source.Gameplay.Units;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace TopDownShooter.Source.Gameplay
 {
 	public class Player
 	{
+		public int id;
         public Hero hero;
         public List<Unit> units = new List<Unit>();
         public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
-        public Player()
+        public Player(int id)
         {
-            
+            this.id = id;
         }
 
         public virtual void Update(Player enemy, Vector2 offset)
 		{
 			hero?.Update(offset);
 
-			foreach (var spawnPoint in spawnPoints)
+			for (int i = spawnPoints.Count - 1; i >= 0; i--)
 			{
-				spawnPoint.Update(offset);
+				var spawnPoint = spawnPoints[i];
+				spawnPoint.Update(offset, enemy);
+				if (spawnPoint.IsDead)
+				{
+					spawnPoints.RemoveAt(i);
+				}
 			}
 
 			for (int i = units.Count - 1; i >= 0; i--)
@@ -43,10 +45,19 @@ namespace TopDownShooter.Source.Gameplay
 
         public virtual void AddUnit(object unit)
         {
-            units.Add((Unit)unit);
-        }
+			Unit tempUnit = unit as Unit;
+			tempUnit.ownerId = id;
+            units.Add(tempUnit);
+		}
 
-        public virtual void ChangeScore(int score)
+		public virtual void AddSpawnPoint(object spawnpoint)
+		{
+			SpawnPoint tempSpawnPoint = spawnpoint as SpawnPoint;
+			tempSpawnPoint.ownerId = id;
+			spawnPoints.Add(tempSpawnPoint);
+		}
+
+		public virtual void ChangeScore(int score)
         {
 
         }

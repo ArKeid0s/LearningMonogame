@@ -16,6 +16,7 @@ namespace TopDownShooter.Source.Engine
 		public static KeyboardManager KeyboardManager { get; set; }
 		public static MouseManager MouseManager { get; set; }
 		public static GameTime GameTime { get; set; }
+		public static Random rng { get; set; } = new Random();
 
 		public static int ScreenHeight { get; set; }
 		public static int ScreenWidth { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 using TopDownShooter.Source.Engine;
 using TopDownShooter.Source.Gameplay.Projectiles;
 
@@ -10,7 +9,7 @@ namespace TopDownShooter.Source.Gameplay.Units
 	{
 		private bool _doCheckScroll;
 
-		public Hero(string path, Vector2 pos, Vector2 dims) : base(path, pos, dims)
+		public Hero(string path, Vector2 pos, Vector2 dims, int id) : base(path, pos, dims, id)
 		{
 			Speed = 2f;
 

@@ -6,6 +6,6 @@ namespace TopDownShooter
 	{
 		public static int score = 0;
 
-		public static PassObject PassProjectile, PassMob, CheckScroll;
+		public static PassObject PassProjectile, PassMob, PassSpawnPoint, CheckScroll;
 	}
 }

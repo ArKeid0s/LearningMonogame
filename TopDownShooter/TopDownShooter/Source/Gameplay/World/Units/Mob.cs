@@ -6,9 +6,12 @@ namespace TopDownShooter.Source.Gameplay.Units
 {
 	public class Mob : Unit
 	{
-		public Mob(string path, Vector2 pos, Vector2 dims) : base(path, pos, dims)
+		public Mob(string path, Vector2 pos, Vector2 dims, int id) : base(path, pos, dims, id)
 		{
 			Speed = 2f;
+
+			Health = 1;
+			HealthMax = Health;
 		}
 
 		public override void Update(Vector2 offset, Player enemy)

@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using TopDownShooter.Source;
 using TopDownShooter.Source.Engine;
 using TopDownShooter.Source.Engine.Input;
-using TopDownShooter.Source.Gameplay;
 
 namespace TopDownShooter
 {

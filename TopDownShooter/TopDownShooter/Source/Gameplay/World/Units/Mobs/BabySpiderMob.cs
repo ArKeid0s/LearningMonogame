@@ -1,13 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TopDownShooter.Source.Engine;
 
 namespace TopDownShooter.Source.Gameplay.Units.Mobs
 {
-	public class BeanMob : Mob
+	public class BabySpiderMob : Mob
 	{
-		public BeanMob(Vector2 pos, int id) : base("Enemies\\sEnemy_strip7", pos, new Vector2(40, 40), id)
+		public SETimer spawnTimer;
+
+		public BabySpiderMob(Vector2 pos, int id) : base("Enemies\\sSpider", pos, new Vector2(25, 25), id)
 		{
-			Speed = 2f;
+			Speed = 3f;
 		}
 
 		public override void Update(Vector2 offset, Player enemy)

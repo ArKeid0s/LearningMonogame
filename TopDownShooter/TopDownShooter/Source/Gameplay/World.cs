@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using TopDownShooter.Source.Engine;
 using TopDownShooter.Source.Gameplay.Units;
 
@@ -25,10 +23,11 @@ namespace TopDownShooter.Source.Gameplay
 
 			GameGlobals.PassProjectile = AddProjectile;
 			GameGlobals.PassMob = AddMob;
+			GameGlobals.PassSpawnPoint = AddSpawnPoint;
 			GameGlobals.CheckScroll = CheckScroll;
 
-			user = new User();
-			aiPlayer = new AIPlayer();
+			user = new User(1);
+			aiPlayer = new AIPlayer(2);
 
 			_offset = Vector2.Zero;
 
@@ -63,14 +62,37 @@ namespace TopDownShooter.Source.Gameplay
             _ui.Update(this);
 		}
 
-		public void AddMob(object mob)
+		public void AddMob(object unit)
 		{
-			aiPlayer.AddUnit(mob as Mob);
+			Unit tempUnit = unit as Unit;
+
+            if (user.id == tempUnit.ownerId)
+            {
+                user.AddUnit(tempUnit);
+            }
+			else if (aiPlayer.id == tempUnit.ownerId)
+			{
+				aiPlayer.AddUnit(tempUnit);
+			}
 		}
 
 		public void AddProjectile(object projectile)
 		{
 			_projectiles.Add((Projectile2d)projectile);
+		}
+
+		public void AddSpawnPoint(object spawnpoint)
+		{
+			SpawnPoint tempSpawnPoint = spawnpoint as SpawnPoint;
+
+			if (user.id == tempSpawnPoint.ownerId)
+			{
+				user.AddSpawnPoint(tempSpawnPoint);
+			}
+			else if (aiPlayer.id == tempSpawnPoint.ownerId)
+			{
+				aiPlayer.AddSpawnPoint(tempSpawnPoint);
+			}
 		}
 
 		public void CheckScroll(object position)
